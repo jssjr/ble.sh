@@ -1870,7 +1870,7 @@ function ble/canvas/trace/.impl {
       ($'\t') # HT
         local _x
         ((_x=(x+it)/it*it,
-          _x>=cols&&(_x=cols-1)))
+          _x>=xlimit&&(_x=xlimit-1)))
         if ((x<_x)); then
           ((lc=32,lg=g))
           ble/canvas/trace/.put-ascii.draw "${_ble_string_prototype::_x-x}"
@@ -1918,19 +1918,19 @@ function ble/canvas/trace/.impl {
       [[ $flag_justify && $justify_sep ]] && s=${s%%["$justify_sep"]*}
       local w=${#s}
       if [[ $opt_nooverflow ]]; then
-        local wmax=$((lines*cols-(y*cols+x)))
+        local wmax=$((lines*xlimit-(y*xlimit+x)))
         ((xenl||wmax--,wmax<0&&(wmax=0)))
         ((w>wmax)) && w=$wmax is_overflow=1
       fi
 
       local t=${s::w}
       if [[ $flag_clip || $opt_relative || $flag_justify ]]; then
-        local tlen=$w len=$((cols-x))
+        local tlen=$w len=$((xlimit-x))
         if ((tlen>len)); then
           while ((tlen>len)); do
             ble/canvas/trace/.put-ascii.draw "${t::len}"
             t=${t:len}
-            ((x=cols,tlen-=len,len=cols))
+            ((x=xlimit,tlen-=len,len=xlimit))
             ble/canvas/trace/.NEL
           done
           w=${#t}
