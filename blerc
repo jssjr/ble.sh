@@ -506,9 +506,9 @@
 ## inserts a new line before the candidates that does not fit into the
 ## remaining part of the current line. The value "align" and "align-nowrap"
 ## aligns the candidates. The value "linewise" shows a candidate per line.  The
-## value "desc" and "desc-raw" shows a candidate per line with description for
-## each. "desc-raw" is different from "desc" in the behavior that it interprets
-## ANSI escape sequences in the descriptions.
+## value "desc" and "desc-text" shows a candidate per line with description for
+## each. "desc-text" is different from "desc" in the behavior that it does not
+## interprets ANSI escape sequences in the descriptions.
 
 #bleopt complete_menu_style=align-nowrap
 

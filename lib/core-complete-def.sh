@@ -58,13 +58,12 @@ bleopt/declare -v complete_allow_reduction ''
 ## @bleopt complete_menu_style
 ##   補完候補のリスト表示のスタイルを指定します。
 ##
-##   dense
-##   dense-nowrap
-##   align
-##   align-nowrap
+##   dense, dense-nowrap, align, align-nowrap
+##   desc, desc-text
 ##
 bleopt/declare -n complete_menu_style align-nowrap
 function bleopt/check:complete_menu_style {
+  [[ $value == desc-raw ]] && value=desc
   if ! ble/is-function "ble/complete/menu-style:$value/construct-page"; then
     ble/util/print-lines \
       "bleopt: Invalid value complete_menu_style='$value'." \
